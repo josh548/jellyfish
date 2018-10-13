@@ -43,24 +43,24 @@ function drawBubble(bubble: Bubble): void {
     context.fill();
 
     context.beginPath();
-    const ellipseX = bubble.x + (bubble.radius / 2.5);
-    const ellipseY = bubble.y - (bubble.radius / 1.5);
-    const ellipseRadiusX = bubble.radius / 5;
-    const ellipseRadiusY = bubble.radius / 10;
-    const ellipseRotation = Math.PI / 5;
-    context.ellipse(ellipseX, ellipseY, ellipseRadiusX, ellipseRadiusY, ellipseRotation, 0, 2 * Math.PI);
+    const biggerEllipseX = bubble.x + (bubble.radius / 2.5);
+    const biggerEllipseY = bubble.y - (bubble.radius / 1.5);
+    const biggerEllipseRadiusX = bubble.radius / 5;
+    const biggerEllipseRadiusY = bubble.radius / 10;
+    const biggerEllipseRotation = Math.PI / 5;
+    context.ellipse(biggerEllipseX, biggerEllipseY, biggerEllipseRadiusX, biggerEllipseRadiusY, biggerEllipseRotation, 0, 2 * Math.PI);
     context.fillStyle = "rgba(255, 255, 255, 0.5)";
     context.shadowBlur = 10;
     context.shadowColor = "white";
     context.fill();
 
     context.beginPath();
-    const ellipseX2 = ellipseX + bubble.radius / 4;
-    const ellipseY2 = ellipseY + bubble.radius / 4;
-    const ellipseRadiusX2 = bubble.radius / 25;
-    const ellipseRadiusY2 = bubble.radius / 25;
-    const ellipseRotation2 = Math.PI / 4;
-    context.ellipse(ellipseX2, ellipseY2, ellipseRadiusX2, ellipseRadiusY2, ellipseRotation2, 0, 2 * Math.PI);
+    const smallerEllipseX = biggerEllipseX + bubble.radius / 4;
+    const smallerEllipseY = biggerEllipseY + bubble.radius / 4;
+    const smallerEllipseRadiusX = bubble.radius / 25;
+    const smallerEllipseRadiusY = bubble.radius / 25;
+    const smallerEllipseRotation = Math.PI / 4;
+    context.ellipse(smallerEllipseX, smallerEllipseY, smallerEllipseRadiusX, smallerEllipseRadiusY, smallerEllipseRotation, 0, 2 * Math.PI);
     context.fillStyle = "rgba(255, 255, 255, 0.5)";
     context.shadowBlur = 10;
     context.shadowColor = "white";
