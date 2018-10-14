@@ -1,6 +1,8 @@
 const canvas = document.querySelector("canvas") as HTMLCanvasElement;
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+canvas.style.width = `${innerWidth}px`;
+canvas.style.height = `${innerHeight}px`;
+canvas.width = innerWidth / 1.5;
+canvas.height = innerHeight / 1.5;
 
 const context = canvas.getContext("2d") as CanvasRenderingContext2D;
 
@@ -90,7 +92,7 @@ function drawJellyfish(jellyfish: Jellyfish): void {
 
     context.fillStyle = "black";
     context.strokeStyle = "black";
-    context.lineWidth = Math.max(1, (0.005 * jellyfish.width));
+    context.lineWidth = Math.max(2, (0.005 * jellyfish.width));
 
     // draw the body
     context.beginPath();
@@ -238,6 +240,36 @@ function drawJellyfish(jellyfish: Jellyfish): void {
     context.stroke();
 }
 
+const result = context.createImageData(canvas.width, canvas.height);
+const yoffset = canvas.width * 4;
+const amplitude = 3;
+const motionsPerSecond = 1.5;
+let angleOffset = 0;
+const angleIncrement = (Math.PI * 2 / 60) * motionsPerSecond;
+
+function applyWaveEffect() {
+    const source = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    if (angleOffset >= Math.PI * 2) {
+        angleOffset = 0;
+    }
+    angleOffset += angleIncrement;
+
+    for (let y = amplitude; y < canvas.height - amplitude; y++) {
+        for (let x = amplitude; x < canvas.width - amplitude; x++) {
+            const xs = amplitude * Math.sin((3 * (y / canvas.height) + angleOffset));
+            const ys = amplitude * Math.cos((3 * (y / canvas.width) + angleOffset));
+            const dest = y * yoffset + x * 4;
+            const src = (y + Math.round(ys)) * yoffset + (x + Math.round(xs)) * 4;
+            result.data[dest] = source.data[src];
+            result.data[dest + 1] = source.data[src + 1];
+            result.data[dest + 2] = source.data[src + 2];
+            result.data[dest + 3] = source.data[src + 3];
+        }
+    }
+    context.putImageData(result, 0, 0);
+}
+
 const bubbles: Bubble[] = [];
 for (let i = 0; i < 10; i++) {
     const bubble: Bubble = {
@@ -260,6 +292,7 @@ function renderScene(): void {
         drawBubble(bubble);
     }
     drawJellyfish(soleJellyfish);
+    applyWaveEffect();
     requestAnimationFrame(renderScene);
 }
 
