@@ -87,32 +87,29 @@ function drawBubble(bubble: Bubble): void {
 }
 
 function drawJellyfish(jellyfish: Jellyfish): void {
-    const xoff = canvas.width / 2;
-    const yoff = canvas.height / 2;
-
     context.fillStyle = "black";
     context.strokeStyle = "black";
-    context.lineWidth = Math.max(2, (0.005 * jellyfish.width));
+    context.lineWidth = Math.max(1, (0.005 * jellyfish.width));
 
     // draw the body
     context.beginPath();
     context.moveTo(
-        xoff - (jellyfish.width / 2), yoff - (0.176 * jellyfish.width),
+        jellyfish.x - (jellyfish.width / 2), jellyfish.y - (0.176 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff - (0.353 * jellyfish.width), yoff - (0.706 * jellyfish.width),
-        xoff + (0.353 * jellyfish.width), yoff - (0.706 * jellyfish.width),
-        xoff + (jellyfish.width / 2), yoff - (0.176 * jellyfish.width),
+        jellyfish.x - (0.353 * jellyfish.width), jellyfish.y - (0.706 * jellyfish.width),
+        jellyfish.x + (0.353 * jellyfish.width), jellyfish.y - (0.706 * jellyfish.width),
+        jellyfish.x + (jellyfish.width / 2), jellyfish.y - (0.176 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff + (0.588 * jellyfish.width), yoff + (0.147 * jellyfish.width),
-        xoff + (0.176 * jellyfish.width), yoff,
-        xoff, yoff,
+        jellyfish.x + (0.588 * jellyfish.width), jellyfish.y + (0.147 * jellyfish.width),
+        jellyfish.x + (0.176 * jellyfish.width), jellyfish.y,
+        jellyfish.x, jellyfish.y,
     );
     context.bezierCurveTo(
-        xoff - (0.176 * jellyfish.width), yoff,
-        xoff - (0.588 * jellyfish.width), yoff + (0.147 * jellyfish.width),
-        xoff - (jellyfish.width / 2), yoff - (0.176 * jellyfish.width),
+        jellyfish.x - (0.176 * jellyfish.width), jellyfish.y,
+        jellyfish.x - (0.588 * jellyfish.width), jellyfish.y + (0.147 * jellyfish.width),
+        jellyfish.x - (jellyfish.width / 2), jellyfish.y - (0.176 * jellyfish.width),
     );
     context.closePath();
     context.stroke();
@@ -120,7 +117,7 @@ function drawJellyfish(jellyfish: Jellyfish): void {
     // draw the left eye
     context.beginPath();
     context.ellipse(
-        xoff - (0.138 * jellyfish.width), yoff - (0.118 * jellyfish.width),
+        jellyfish.x - (0.138 * jellyfish.width), jellyfish.y - (0.118 * jellyfish.width),
         (0.032 * jellyfish.width), (0.025 * jellyfish.width),
         0, 0, Math.PI * 2,
     );
@@ -129,7 +126,7 @@ function drawJellyfish(jellyfish: Jellyfish): void {
     // draw the right eye
     context.beginPath();
     context.ellipse(
-        xoff + (0.138 * jellyfish.width), yoff - (0.118 * jellyfish.width),
+        jellyfish.x + (0.138 * jellyfish.width), jellyfish.y - (0.118 * jellyfish.width),
         (0.032 * jellyfish.width), (0.025 * jellyfish.width),
         0, 0, Math.PI * 2,
     );
@@ -138,7 +135,7 @@ function drawJellyfish(jellyfish: Jellyfish): void {
     // draw the smile
     context.beginPath();
     context.arc(
-        xoff, yoff - (0.118 * jellyfish.width),
+        jellyfish.x, jellyfish.y - (0.118 * jellyfish.width),
         (0.030 * jellyfish.width), Math.PI / 8, Math.PI - (Math.PI / 8),
     );
     context.stroke();
@@ -146,95 +143,95 @@ function drawJellyfish(jellyfish: Jellyfish): void {
     // draw the first leg (left to right)
     context.beginPath();
     context.moveTo(
-        xoff - (0.241 * jellyfish.width), yoff + (0.029 * jellyfish.width),
+        jellyfish.x - (0.241 * jellyfish.width), jellyfish.y + (0.029 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff - (0.218 * jellyfish.width), yoff + (0.100 * jellyfish.width),
-        xoff - (0.224 * jellyfish.width), yoff + (0.159 * jellyfish.width),
-        xoff - (0.288 * jellyfish.width), yoff + (0.159 * jellyfish.width),
+        jellyfish.x - (0.218 * jellyfish.width), jellyfish.y + (0.100 * jellyfish.width),
+        jellyfish.x - (0.224 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
+        jellyfish.x - (0.288 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff - (0.353 * jellyfish.width), yoff + (0.165 * jellyfish.width),
-        xoff - (0.259 * jellyfish.width), yoff + (0.106 * jellyfish.width),
-        xoff - (0.306 * jellyfish.width), yoff + (0.033 * jellyfish.width),
+        jellyfish.x - (0.353 * jellyfish.width), jellyfish.y + (0.165 * jellyfish.width),
+        jellyfish.x - (0.259 * jellyfish.width), jellyfish.y + (0.106 * jellyfish.width),
+        jellyfish.x - (0.306 * jellyfish.width), jellyfish.y + (0.033 * jellyfish.width),
     );
     context.stroke();
 
     // draw the fourth leg (left to right)
     context.beginPath();
     context.moveTo(
-        xoff + (0.241 * jellyfish.width), yoff + (0.029 * jellyfish.width),
+        jellyfish.x + (0.241 * jellyfish.width), jellyfish.y + (0.029 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff + (0.218 * jellyfish.width), yoff + (0.100 * jellyfish.width),
-        xoff + (0.224 * jellyfish.width), yoff + (0.159 * jellyfish.width),
-        xoff + (0.288 * jellyfish.width), yoff + (0.159 * jellyfish.width),
+        jellyfish.x + (0.218 * jellyfish.width), jellyfish.y + (0.100 * jellyfish.width),
+        jellyfish.x + (0.224 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
+        jellyfish.x + (0.288 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff + (0.353 * jellyfish.width), yoff + (0.165 * jellyfish.width),
-        xoff + (0.259 * jellyfish.width), yoff + (0.106 * jellyfish.width),
-        xoff + (0.306 * jellyfish.width), yoff + (0.033 * jellyfish.width),
+        jellyfish.x + (0.353 * jellyfish.width), jellyfish.y + (0.165 * jellyfish.width),
+        jellyfish.x + (0.259 * jellyfish.width), jellyfish.y + (0.106 * jellyfish.width),
+        jellyfish.x + (0.306 * jellyfish.width), jellyfish.y + (0.033 * jellyfish.width),
     );
     context.stroke();
 
     // draw the second leg (left to right)
     context.beginPath();
     context.moveTo(
-        xoff - (0.065 * jellyfish.width), yoff + (0.004 * jellyfish.width),
+        jellyfish.x - (0.065 * jellyfish.width), jellyfish.y + (0.004 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff - (0.041 * jellyfish.width), yoff + (0.100 * jellyfish.width),
-        xoff - (0.047 * jellyfish.width), yoff + (0.159 * jellyfish.width),
-        xoff - (0.112 * jellyfish.width), yoff + (0.159 * jellyfish.width),
+        jellyfish.x - (0.041 * jellyfish.width), jellyfish.y + (0.100 * jellyfish.width),
+        jellyfish.x - (0.047 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
+        jellyfish.x - (0.112 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff - (0.176 * jellyfish.width), yoff + (0.165 * jellyfish.width),
-        xoff - (0.082 * jellyfish.width), yoff + (0.106 * jellyfish.width),
-        xoff - (0.147 * jellyfish.width), yoff + (0.017 * jellyfish.width),
+        jellyfish.x - (0.176 * jellyfish.width), jellyfish.y + (0.165 * jellyfish.width),
+        jellyfish.x - (0.082 * jellyfish.width), jellyfish.y + (0.106 * jellyfish.width),
+        jellyfish.x - (0.147 * jellyfish.width), jellyfish.y + (0.017 * jellyfish.width),
     );
     context.stroke();
 
     // draw the third leg (left to right)
     context.beginPath();
     context.moveTo(
-        xoff + (0.065 * jellyfish.width), yoff + (0.004 * jellyfish.width),
+        jellyfish.x + (0.065 * jellyfish.width), jellyfish.y + (0.004 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff + (0.041 * jellyfish.width), yoff + (0.100 * jellyfish.width),
-        xoff + (0.047 * jellyfish.width), yoff + (0.159 * jellyfish.width),
-        xoff + (0.112 * jellyfish.width), yoff + (0.159 * jellyfish.width),
+        jellyfish.x + (0.041 * jellyfish.width), jellyfish.y + (0.100 * jellyfish.width),
+        jellyfish.x + (0.047 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
+        jellyfish.x + (0.112 * jellyfish.width), jellyfish.y + (0.159 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff + (0.176 * jellyfish.width), yoff + (0.165 * jellyfish.width),
-        xoff + (0.082 * jellyfish.width), yoff + (0.106 * jellyfish.width),
-        xoff + (0.147 * jellyfish.width), yoff + (0.017 * jellyfish.width),
+        jellyfish.x + (0.176 * jellyfish.width), jellyfish.y + (0.165 * jellyfish.width),
+        jellyfish.x + (0.082 * jellyfish.width), jellyfish.y + (0.106 * jellyfish.width),
+        jellyfish.x + (0.147 * jellyfish.width), jellyfish.y + (0.017 * jellyfish.width),
     );
     context.stroke();
 
     // draw the flower
     context.beginPath();
     context.moveTo(
-        xoff - (0.029 * jellyfish.width), yoff - (0.471 * jellyfish.width),
+        jellyfish.x - (0.029 * jellyfish.width), jellyfish.y - (0.471 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff - (0.059 * jellyfish.width), yoff - (0.382 * jellyfish.width),
-        xoff + (0.059 * jellyfish.width), yoff - (0.382 * jellyfish.width),
-        xoff + (0.029 * jellyfish.width), yoff - (0.471 * jellyfish.width),
+        jellyfish.x - (0.059 * jellyfish.width), jellyfish.y - (0.382 * jellyfish.width),
+        jellyfish.x + (0.059 * jellyfish.width), jellyfish.y - (0.382 * jellyfish.width),
+        jellyfish.x + (0.029 * jellyfish.width), jellyfish.y - (0.471 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff + (0.147 * jellyfish.width), yoff - (0.412 * jellyfish.width),
-        xoff + (0.176 * jellyfish.width), yoff - (0.529 * jellyfish.width),
-        xoff + (0.029 * jellyfish.width), yoff - (0.500 * jellyfish.width),
+        jellyfish.x + (0.147 * jellyfish.width), jellyfish.y - (0.412 * jellyfish.width),
+        jellyfish.x + (0.176 * jellyfish.width), jellyfish.y - (0.529 * jellyfish.width),
+        jellyfish.x + (0.029 * jellyfish.width), jellyfish.y - (0.500 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff + (0.059 * jellyfish.width), yoff - (0.559 * jellyfish.width),
-        xoff - (0.059 * jellyfish.width), yoff - (0.559 * jellyfish.width),
-        xoff - (0.029 * jellyfish.width), yoff - (0.500 * jellyfish.width),
+        jellyfish.x + (0.059 * jellyfish.width), jellyfish.y - (0.559 * jellyfish.width),
+        jellyfish.x - (0.059 * jellyfish.width), jellyfish.y - (0.559 * jellyfish.width),
+        jellyfish.x - (0.029 * jellyfish.width), jellyfish.y - (0.500 * jellyfish.width),
     );
     context.bezierCurveTo(
-        xoff - (0.147 * jellyfish.width), yoff - (0.529 * jellyfish.width),
-        xoff - (0.176 * jellyfish.width), yoff - (0.412 * jellyfish.width),
-        xoff - (0.029 * jellyfish.width), yoff - (0.471 * jellyfish.width),
+        jellyfish.x - (0.147 * jellyfish.width), jellyfish.y - (0.529 * jellyfish.width),
+        jellyfish.x - (0.176 * jellyfish.width), jellyfish.y - (0.412 * jellyfish.width),
+        jellyfish.x - (0.029 * jellyfish.width), jellyfish.y - (0.471 * jellyfish.width),
     );
     context.closePath();
     context.stroke();
