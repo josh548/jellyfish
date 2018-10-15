@@ -1,0 +1,28 @@
+{
+  "name": "ocean-scene",
+  "version": "1.0.0",
+  "description": "Run `tsc` to compile the TypeScript code and then open `index.html` to view the scene.",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "build:watch": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/escamilla/ocean-scene.git"
+  },
+  "keywords": [],
+  "author": "Joshua Escamilla <joshua.escamilla@selu.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/escamilla/ocean-scene/issues"
+  },
+  "homepage": "https://github.com/escamilla/ocean-scene#readme",
+  "devDependencies": {
+    "ts-loader": "^5.2.2",
+    "typescript": "^3.1.3",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
