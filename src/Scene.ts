@@ -1,12 +1,14 @@
 import Bubble from "./Bubble";
 import Jellyfish from "./Jellyfish";
-
-const MEDIUM_SKY_BLUE = "#72DDF7";
-const VIVID_SKY_BLUE = "#0AD3FF";
+import {
+    MEDIUM_SKY_BLUE,
+    VIVID_SKY_BLUE,
+    X_SCALE,
+} from "./settings";
 
 export default class Scene {
-    private context: CanvasRenderingContext2D;
-    private jellyfishes: Jellyfish[];
+    private readonly context: CanvasRenderingContext2D;
+    private readonly jellyfishes: Jellyfish[];
     private bubbles: Bubble[];
 
     constructor(context: CanvasRenderingContext2D) {
@@ -16,27 +18,38 @@ export default class Scene {
         this.initialize();
     }
 
-    public initialize(): void {
+    private initialize(): void {
         this.jellyfishes.push(new Jellyfish(this.context.canvas.width / 2, this.context.canvas.height / 2, 100));
-
-        for (let i = 0; i < 10; i++) {
-            const bubble = new Bubble(
-                Math.random() * this.context.canvas.width,
-                Math.random() * this.context.canvas.height,
-                Math.random() * 100,
-            );
-            this.bubbles.push(bubble);
-        }
     }
 
     public render(context: CanvasRenderingContext2D): void {
         this.renderBackground(context);
         for (const bubble of this.bubbles) {
             bubble.render(context);
+            bubble.update();
         }
+        this.bubbles = this.bubbles.filter((bubble: Bubble) => bubble.isVisible());
         for (const jellyfish of this.jellyfishes) {
             jellyfish.render(context);
         }
+    }
+
+    public addRandomBubble(): void {
+        const radius = Math.random() * (this.context.canvas.width * X_SCALE) * 0.5;
+        this.bubbles.push(new Bubble(
+            Math.random() * this.context.canvas.width,
+            this.context.canvas.height + radius,
+            radius,
+        ));
+    }
+
+    public addBubbleAtPoint(x: number, y: number): void {
+        const radius = Math.random() * (this.context.canvas.width * X_SCALE) * 0.5;
+        this.bubbles.push(new Bubble(
+            x,
+            y,
+            radius,
+        ));
     }
 
     private renderBackground(context: CanvasRenderingContext2D): void {

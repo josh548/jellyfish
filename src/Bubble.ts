@@ -1,7 +1,7 @@
 export default class Bubble {
-    private x: number;
-    private y: number;
-    private radius: number;
+    public x: number;
+    public y: number;
+    public readonly radius: number;
 
     constructor(x: number, y: number, radius: number) {
         this.x = x;
@@ -61,5 +61,13 @@ export default class Bubble {
 
         context.shadowBlur = 0;
         context.fillStyle = "white";
+    }
+
+    public update(): void {
+        this.y -= 1;
+    }
+
+    public isVisible(): boolean {
+        return this.y + this.radius > 0;
     }
 }

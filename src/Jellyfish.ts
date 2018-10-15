@@ -1,7 +1,7 @@
 export default class Jellyfish {
-    private x: number;
-    private y: number;
-    private width: number;
+    private readonly x: number;
+    private readonly y: number;
+    private readonly width: number;
 
     constructor(x: number, y: number, width: number) {
         this.x = x;
