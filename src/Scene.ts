@@ -38,6 +38,12 @@ export default class Scene {
         for (const jellyfish of this.jellyfishes) {
             jellyfish.render(context);
         }
+
+        this.context.font = "24px Nikukyu";
+        this.context.fillStyle = "black";
+        this.context.textAlign = "center";
+        this.context.fillText("おたんじょうび", this.context.canvas.width / 2, this.context.canvas.height * 0.25);
+        this.context.fillText("おめでとう", this.context.canvas.width / 2, this.context.canvas.height * 0.75);
     }
 
     public addRandomBubble(): void {
