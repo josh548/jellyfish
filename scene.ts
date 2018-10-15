@@ -254,7 +254,7 @@ function applyWaveEffect() {
 
     for (let y = amplitude; y < canvas.height - amplitude; y++) {
         for (let x = amplitude; x < canvas.width - amplitude; x++) {
-            const xs = amplitude * Math.sin((3 * (y / canvas.height) + angleOffset));
+            const xs = amplitude * Math.sin((3 * (x / canvas.height) + angleOffset));
             const ys = amplitude * Math.cos((3 * (y / canvas.width) + angleOffset));
             const dest = y * yoffset + x * 4;
             const src = (y + Math.round(ys)) * yoffset + (x + Math.round(xs)) * 4;
