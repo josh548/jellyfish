@@ -7,6 +7,7 @@ export default class Jellyfish {
     private readonly x: number;
     private readonly y: number;
     private readonly width: number;
+    private hue: number = 0;
 
     constructor(x: number, y: number, width: number) {
         this.x = x;
@@ -15,9 +16,10 @@ export default class Jellyfish {
     }
 
     public render(context: CanvasRenderingContext2D): void {
-        context.fillStyle = "black";
         context.strokeStyle = "black";
         context.lineWidth = Math.max(2, (0.005 * this.width));
+
+        context.fillStyle = JELLYFISH_BODY_COLOR;
 
         // draw the body
         context.beginPath();
@@ -40,38 +42,8 @@ export default class Jellyfish {
             this.x - (this.width / 2), this.y - (0.176 * this.width),
         );
         context.closePath();
-        context.fillStyle = "rgba(252, 252, 252, 0.5)";
         context.fill();
         context.stroke();
-
-        context.fillStyle = "black";
-        // draw the left eye
-        context.beginPath();
-        context.ellipse(
-            this.x - (0.138 * this.width), this.y - (0.118 * this.width),
-            (0.032 * this.width), (0.025 * this.width),
-            0, 0, Math.PI * 2,
-        );
-        context.fill();
-
-        // draw the right eye
-        context.beginPath();
-        context.ellipse(
-            this.x + (0.138 * this.width), this.y - (0.118 * this.width),
-            (0.032 * this.width), (0.025 * this.width),
-            0, 0, Math.PI * 2,
-        );
-        context.fill();
-
-        // draw the smile
-        context.beginPath();
-        context.arc(
-            this.x, this.y - (0.118 * this.width),
-            (0.030 * this.width), Math.PI / 8, Math.PI - (Math.PI / 8),
-        );
-        context.stroke();
-
-        context.fillStyle = JELLYFISH_BODY_COLOR;
 
         // draw the first leg (left to right)
         context.beginPath();
@@ -171,8 +143,35 @@ export default class Jellyfish {
             this.x - (0.029 * this.width), this.y - (0.471 * this.width),
         );
         context.closePath();
-        context.fillStyle = JELLYFISH_FLOWER_COLOR;
+        context.fillStyle = `hsl(${this.hue++}, 100%, 87.5%)`;
         context.fill();
+        context.stroke();
+
+        context.fillStyle = "black";
+        // draw the left eye
+        context.beginPath();
+        context.ellipse(
+            this.x - (0.138 * this.width), this.y - (0.118 * this.width),
+            (0.032 * this.width), (0.025 * this.width),
+            0, 0, Math.PI * 2,
+        );
+        context.fill();
+
+        // draw the right eye
+        context.beginPath();
+        context.ellipse(
+            this.x + (0.138 * this.width), this.y - (0.118 * this.width),
+            (0.032 * this.width), (0.025 * this.width),
+            0, 0, Math.PI * 2,
+        );
+        context.fill();
+
+        // draw the smile
+        context.beginPath();
+        context.arc(
+            this.x, this.y - (0.118 * this.width),
+            (0.030 * this.width), Math.PI / 8, Math.PI - (Math.PI / 8),
+        );
         context.stroke();
     }
 }
