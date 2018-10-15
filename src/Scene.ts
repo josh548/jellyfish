@@ -19,16 +19,22 @@ export default class Scene {
     }
 
     private initialize(): void {
-        this.jellyfishes.push(new Jellyfish(this.context.canvas.width / 2, this.context.canvas.height / 2, 100));
+        this.jellyfishes.push(new Jellyfish(
+            this.context.canvas.width * 0.5,
+            this.context.canvas.height * 0.55,
+            100,
+        ));
     }
 
     public render(context: CanvasRenderingContext2D): void {
         this.renderBackground(context);
+
         for (const bubble of this.bubbles) {
             bubble.render(context);
             bubble.update();
         }
         this.bubbles = this.bubbles.filter((bubble: Bubble) => bubble.isVisible());
+
         for (const jellyfish of this.jellyfishes) {
             jellyfish.render(context);
         }

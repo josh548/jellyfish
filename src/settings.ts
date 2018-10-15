@@ -8,6 +8,6 @@ export const JELLYFISH_FLOWER_COLOR = "#CCD5FF";
 
 export const FRAMES_BETWEEN_BUBBLES = 60;
 
-export const WAVE_AMPLITUDE = 5; // pixels
+export const WAVE_AMPLITUDE = 3; // pixels
 export const WAVES_PER_SECOND = 2;
 export const WAVE_BOUNCE_FACTOR = 3;
