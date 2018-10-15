@@ -1,3 +1,8 @@
+import {
+    JELLYFISH_BODY_COLOR,
+    JELLYFISH_FLOWER_COLOR,
+} from "./settings";
+
 export default class Jellyfish {
     private readonly x: number;
     private readonly y: number;
@@ -35,8 +40,11 @@ export default class Jellyfish {
             this.x - (this.width / 2), this.y - (0.176 * this.width),
         );
         context.closePath();
+        context.fillStyle = "rgba(252, 252, 252, 0.5)";
+        context.fill();
         context.stroke();
 
+        context.fillStyle = "black";
         // draw the left eye
         context.beginPath();
         context.ellipse(
@@ -63,6 +71,8 @@ export default class Jellyfish {
         );
         context.stroke();
 
+        context.fillStyle = JELLYFISH_BODY_COLOR;
+
         // draw the first leg (left to right)
         context.beginPath();
         context.moveTo(
@@ -78,6 +88,7 @@ export default class Jellyfish {
             this.x - (0.259 * this.width), this.y + (0.106 * this.width),
             this.x - (0.306 * this.width), this.y + (0.033 * this.width),
         );
+        context.fill();
         context.stroke();
 
         // draw the fourth leg (left to right)
@@ -95,6 +106,7 @@ export default class Jellyfish {
             this.x + (0.259 * this.width), this.y + (0.106 * this.width),
             this.x + (0.306 * this.width), this.y + (0.033 * this.width),
         );
+        context.fill();
         context.stroke();
 
         // draw the second leg (left to right)
@@ -112,6 +124,7 @@ export default class Jellyfish {
             this.x - (0.082 * this.width), this.y + (0.106 * this.width),
             this.x - (0.147 * this.width), this.y + (0.017 * this.width),
         );
+        context.fill();
         context.stroke();
 
         // draw the third leg (left to right)
@@ -129,6 +142,7 @@ export default class Jellyfish {
             this.x + (0.082 * this.width), this.y + (0.106 * this.width),
             this.x + (0.147 * this.width), this.y + (0.017 * this.width),
         );
+        context.fill();
         context.stroke();
 
         // draw the flower
@@ -157,6 +171,8 @@ export default class Jellyfish {
             this.x - (0.029 * this.width), this.y - (0.471 * this.width),
         );
         context.closePath();
+        context.fillStyle = JELLYFISH_FLOWER_COLOR;
+        context.fill();
         context.stroke();
     }
 }

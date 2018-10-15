@@ -1,8 +1,8 @@
 import Bubble from "./Bubble";
 import Jellyfish from "./Jellyfish";
 import {
-    MEDIUM_SKY_BLUE,
-    VIVID_SKY_BLUE,
+    DARK_BLUE,
+    LIGHT_BLUE,
     X_SCALE,
 } from "./settings";
 
@@ -57,8 +57,8 @@ export default class Scene {
             context.canvas.width / 2, 0,
             context.canvas.width / 2, context.canvas.height,
         );
-        gradient.addColorStop(0, MEDIUM_SKY_BLUE);
-        gradient.addColorStop(1, VIVID_SKY_BLUE);
+        gradient.addColorStop(0, LIGHT_BLUE);
+        gradient.addColorStop(1, DARK_BLUE);
         context.fillStyle = gradient;
         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
