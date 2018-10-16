@@ -1,5 +1,5 @@
-export const X_SCALE = 0.5;
-export const Y_SCALE = 0.5;
+export const X_SCALE = 1;
+export const Y_SCALE = 1;
 
 export const LIGHT_BLUE = "#72DDF7";
 export const DARK_BLUE = "#0AD3FF";

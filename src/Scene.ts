@@ -22,7 +22,7 @@ export default class Scene {
         this.jellyfishes.push(new Jellyfish(
             this.context.canvas.width * 0.5,
             this.context.canvas.height * 0.55,
-            100,
+            200,
         ));
     }
 
@@ -39,7 +39,7 @@ export default class Scene {
             jellyfish.render(context);
         }
 
-        this.context.font = "20px Nikukyu";
+        this.context.font = "36px Nikukyu";
         this.context.fillStyle = "black";
         this.context.textAlign = "center";
         this.context.fillText("おたんじょうび", this.context.canvas.width / 2, this.context.canvas.height * 0.25);
