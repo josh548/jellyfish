@@ -47,7 +47,7 @@ export default class Scene {
     }
 
     public addRandomBubble(): void {
-        const radius = Math.random() * (this.context.canvas.width * X_SCALE) * 0.5;
+        const radius = Math.max(Math.random() * (this.context.canvas.width * X_SCALE) * 0.25, 50);
         this.bubbles.push(new Bubble(
             Math.random() * this.context.canvas.width,
             this.context.canvas.height + radius,
@@ -56,7 +56,7 @@ export default class Scene {
     }
 
     public addBubbleAtPoint(x: number, y: number): void {
-        const radius = Math.random() * (this.context.canvas.width * X_SCALE) * 0.5;
+        const radius = Math.max(Math.random() * (this.context.canvas.width * X_SCALE) * 0.25, 50);
         this.bubbles.push(new Bubble(
             x,
             y,
