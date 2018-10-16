@@ -22,6 +22,7 @@ const angleIncrement = (Math.PI * 2 / 60) * WAVES_PER_SECOND;
 
 const xCount = canvas.width - (2 * WAVE_AMPLITUDE);
 const yCount = canvas.height - (2 * WAVE_AMPLITUDE);
+const xyCount = xCount * yCount;
 const angleCount = 60 / WAVES_PER_SECOND;
 
 // Precalculated look up tables for mapping source pixels (original image) to destination pixels (distorted image)
@@ -63,17 +64,16 @@ function applyWaveEffect() {
     }
     angleOffset += angleIncrement;
 
-    for (let x = WAVE_AMPLITUDE; x < canvas.width - WAVE_AMPLITUDE; x++) {
-        for (let y = WAVE_AMPLITUDE; y < canvas.height - WAVE_AMPLITUDE; y++) {
-            const dest = destTable[tableIndex];
-            const src = srcTable[tableIndex];
-            result.data[dest] = source.data[src];
-            result.data[dest + 1] = source.data[src + 1];
-            result.data[dest + 2] = source.data[src + 2];
-            result.data[dest + 3] = source.data[src + 3];
-            tableIndex++;
-        }
+    for (let i = 0; i < xyCount; i++) {
+        const dest = destTable[tableIndex];
+        const src = srcTable[tableIndex];
+        result.data[dest] = source.data[src];
+        result.data[dest + 1] = source.data[src + 1];
+        result.data[dest + 2] = source.data[src + 2];
+        result.data[dest + 3] = source.data[src + 3];
+        tableIndex++;
     }
+
     context.putImageData(result, 0, 0);
 }
 
