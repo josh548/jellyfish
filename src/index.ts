@@ -29,8 +29,9 @@ function applyWaveEffect() {
     angleOffset += angleIncrement;
 
     for (let x = WAVE_AMPLITUDE; x < canvas.width - WAVE_AMPLITUDE; x++) {
+        const xquotient = x / canvas.height;
         for (let y = WAVE_AMPLITUDE; y < canvas.height - WAVE_AMPLITUDE; y++) {
-            const xs = WAVE_AMPLITUDE * Math.sin((WAVE_BOUNCE_FACTOR * (x / canvas.height) + angleOffset));
+            const xs = WAVE_AMPLITUDE * Math.sin((WAVE_BOUNCE_FACTOR * xquotient + angleOffset));
             const ys = WAVE_AMPLITUDE * Math.cos((WAVE_BOUNCE_FACTOR * (y / canvas.width) + angleOffset));
             const dest = y * yoffset + x * 4;
             const src = (y + Math.round(ys)) * yoffset + (x + Math.round(xs)) * 4;
