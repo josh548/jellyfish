@@ -1,7 +1,4 @@
-import {
-    JELLYFISH_BODY_COLOR,
-    JELLYFISH_FLOWER_COLOR,
-} from "./settings";
+import { JELLYFISH_BODY_COLOR } from "./settings";
 
 export default class Jellyfish {
     private readonly x: number;
